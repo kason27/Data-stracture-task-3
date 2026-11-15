@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+// a) sum of first n natural numbers
+int sum(int n) {
+    if (n == 0)
+        return 0;
+    return n + sum(n - 1);
+}
+
+// b) factorial
+long fact(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+    return n * fact(n - 1);
+}
+
+// c) nth term of fibonacci (0, 1, 1, 2, 3, ...)
+int fibTerm(int n) {
+    if (n == 1)
+        return 0;
+    if (n == 2)
+        return 1;
+    return fibTerm(n - 1) + fibTerm(n - 2);
+}
+
+// d) print n terms of fibonacci
+void fibSeries(int a, int b, int n) {
+    if (n == 0)
+        return;
+    printf("%d ", a);
+    fibSeries(b, a + b, n - 1);
+}
+
+int main() {
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+
+    printf("Sum = %d\n", sum(n));
+    printf("Factorial = %ld\n", fact(n));
+    printf("Fibonacci term %d = %d\n", n, fibTerm(n));
+    printf("Fibonacci series: ");
+    fibSeries(0, 1, n);
+    printf("\n");
+    return 0;
+}
