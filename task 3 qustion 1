@@ -1,0 +1,67 @@
+#include <stdio.h>
+#define SIZE 5
+
+int q[SIZE];
+int front = -1, rear = -1;
+
+int isFull() {
+    return (rear + 1) % SIZE == front;
+}
+
+int isEmpty() {
+    return front == -1;
+}
+
+void enqueue(int x) {
+    if (isFull()) {
+        printf("Queue is full\n");
+        return;
+    }
+    if (front == -1)
+        front = 0;
+    rear = (rear + 1) % SIZE;
+    q[rear] = x;
+}
+
+void dequeue() {
+    if (isEmpty()) {
+        printf("Queue is empty\n");
+        return;
+    }
+    printf("Removed: %d\n", q[front]);
+    if (front == rear) {
+        front = -1;
+        rear = -1;
+    } else {
+        front = (front + 1) % SIZE;
+    }
+}
+
+void display() {
+    int i;
+    if (isEmpty()) {
+        printf("Queue is empty\n");
+        return;
+    }
+    i = front;
+    while (i != rear) {
+        printf("%d ", q[i]);
+        i = (i + 1) % SIZE;
+    }
+    printf("%d\n", q[rear]);
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    display();
+    dequeue();
+    dequeue();
+    enqueue(60);
+    enqueue(70);
+    display();
+    return 0;
+}
